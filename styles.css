@@ -1,0 +1,66 @@
+* {
+  font-family: sans-serif;
+}
+
+#title {
+  text-align: center;
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+button {
+  font-size: 1.3rem;
+}
+
+.game {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.left {
+  width: 45%;
+}
+
+.upgrades-pane {
+  background-color: aqua;
+  width: 45%;
+  height: 65%;
+  position: absolute;
+  border-radius: 2%;
+}
+
+.upgrade {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid blue;
+  align-content: center;
+}
+
+.upgrade p {
+  font-size: 1.3rem;
+}
+
+.upgrade h3 {
+  font-size: 1.5rem;
+}
+
+.right {
+  width: 45%;
+  text-align: center;
+}
+
+#serve {
+  font-size: 3rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.selected {
+  color: blue;
+  background-color: cornflowerblue;
+}
