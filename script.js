@@ -14,25 +14,39 @@ const autoUpgradesDiv = document.querySelector("#auto-up");
 const upgradePanes = [clickUpgradesDiv, autoPurchasesDiv, autoUpgradesDiv];
 
 //variables
-let custServed = 0;
+let onionChopped = 0;
 
 //upgrades objects
 const clickUpgradesObj = {
   clickStrIncrease: 0,
   upgrades: {
     fryingPan: {
-      name: "Frying Pan",
-      description: "Increase click strength by .1",
+      name: "Paring Knife",
+      description: "Just a lil knife. Increases click strength by 1",
       count: 0,
       cost: 10,
-      clickIncrease: 0.1,
+      clickIncrease: 1,
     },
     chefsKnife: {
       name: "Chef's Knife",
-      description: "Increase click strength by .5",
+      description: "Now we're talking! Increase click strength by 5",
       count: 0,
       cost: 100,
-      clickIncrease: 0.5,
+      clickIncrease: 5,
+    },
+    knifeTraining: {
+      name: "Train knife skills",
+      description: "Chop faster! Increases click strength by 10",
+      count: 0,
+      cost: 500,
+      clickIncrease: 10,
+    },
+    ambidextrous: {
+      name: "Ambidexterity",
+      description: "Work with both hands! Increases click strength by 25",
+      count: 0,
+      cost: 1000,
+      clickIncrease: 25,
     },
   },
 };
@@ -74,13 +88,13 @@ initializeUpgrades();
 
 //functions
 const serveCustomer = function () {
-  custServed = custServed + 1 + clickUpgradesObj.clickStrIncrease;
-  count.textContent = custServed.toFixed(1);
+  onionChopped = onionChopped + 1 + clickUpgradesObj.clickStrIncrease;
+  count.textContent = onionChopped;
 };
 
 const decrementCustomers = function (cost) {
-  custServed -= cost;
-  count.textContent = custServed.toFixed(1);
+  onionChopped -= cost;
+  count.textContent = onionChopped;
 };
 
 const showUpgradePane = function (selPane) {
@@ -97,15 +111,13 @@ const showUpgradePane = function (selPane) {
 
 const buyClickStrengthUpgrade = function (upgrade, element) {
   upgrade = clickUpgradesObj.upgrades[upgrade];
-  if (custServed >= upgrade.cost) {
+  if (onionChopped >= upgrade.cost) {
     decrementCustomers(upgrade.cost);
     clickUpgradesObj.clickStrIncrease += upgrade.clickIncrease;
     upgrade.count++;
     element.querySelector(".count").textContent = `Count: ${upgrade.count}`;
-    upgrade.cost = upgrade.cost * 1.2;
-    element.querySelector(".cost").textContent = `Cost: ${upgrade.cost.toFixed(
-      1
-    )}`;
+    upgrade.cost = Math.floor(upgrade.cost * 1.2);
+    element.querySelector(".cost").textContent = `Cost: ${upgrade.cost}`;
   }
 };
 
