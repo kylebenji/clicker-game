@@ -13,5 +13,5 @@ silly little chef clicker game
   - [ ] make tick faster so onions will update more often
   - [ ] find a better font
   - [ ] visual cue each time you click?
-  - [ ] convert to use insertAdjacentHTML for adding buttons and upgrades, should be much better
+  - [x] convert to use insertAdjacentHTML for adding buttons and upgrades, should be much better
   
