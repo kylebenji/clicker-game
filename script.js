@@ -3,6 +3,7 @@ const btnServe = document.querySelector("#serve");
 const btnClickUp = document.querySelector("#click-upgrades");
 const btnAutoPurch = document.querySelector("#autoclick-purchases");
 const btnAutoUp = document.querySelector("#autoclick-upgrades");
+const btnManagers = document.querySelector("#managers-btn");
 const upgButtons = [btnClickUp, btnAutoPurch, btnAutoUp];
 const btnsBuy = document.getElementsByClassName("buy");
 
@@ -11,18 +12,24 @@ const count = document.querySelector("#count");
 const clickUpgradesDiv = document.querySelector("#click-strength");
 const autoPurchasesDiv = document.querySelector("#autoclick");
 const autoUpgradesDiv = document.querySelector("#auto-up");
-const upgradePanes = [clickUpgradesDiv, autoPurchasesDiv, autoUpgradesDiv];
+const managersDiv = document.querySelector("#managers");
+const upgradePanes = [
+  clickUpgradesDiv,
+  autoPurchasesDiv,
+  autoUpgradesDiv,
+  managersDiv,
+];
 const onionPerClick = document.querySelector("#onion-per-click");
 const onionPerSecond = document.querySelector("#onion-per-second");
 
 //variables
-let onionChopped = 0;
+let onionChopped = 15000;
 
 //upgrades objects
 const clickUpgradesObj = {
   clickStrIncrease: 0,
   upgrades: {
-    fryingPan: {
+    paringKnife: {
       name: "Paring Knife",
       description: "Just a lil knife. Increases click strength by 1",
       count: 0,
@@ -59,7 +66,7 @@ const autoclickObj = {
     busboy: {
       name: "Grab Busboy",
       description:
-        "grab a busboy from the floor to help you chop. not very fast, but they've got spirit. +1 chops per second",
+        "Grab a busboy from the floor to help you chop. Not very fast, but they've got spirit. +1 chops per second",
       count: 0,
       cost: 500,
       perSecIncrease: 1,
@@ -73,7 +80,7 @@ const autoclickObj = {
     },
     autochopper: {
       name: "Automated Chopper",
-      description: "basic autochopper. Loud, but can chop 25 onions a second",
+      description: "Basic autochopper. Loud, but can chop 25 onions a second",
       count: 0,
       cost: 25000,
       perSecIncrease: 25,
@@ -81,67 +88,56 @@ const autoclickObj = {
   },
 };
 
+const managersObj = {
+  managers: {
+    knifeSharpener: {
+      name: "Knife Sharpener",
+      description:
+        "Sharpen your knives regularly! Automatically purchases the Paring knife and Chef's Knife upgrades when they become available",
+      owned: false,
+      cost: 10000,
+      upgrades: ["paringKnife", "chefsKnife"],
+      upgradeType: "clickUpgrades",
+    },
+  },
+};
+
 //setup
 const initializeUpgrades = function () {
   for (const [upgrade, data] of Object.entries(clickUpgradesObj.upgrades)) {
-    //create div section
-    let upgradeDiv = document.createElement("div");
-    upgradeDiv.classList.add("click-strength-upgrade", "upgrade");
-    upgradeDiv.id = upgrade;
-    //add title
-    let title = document.createElement("h3");
-    title.textContent = data.name;
-    upgradeDiv.appendChild(title);
-    //add description
-    let description = document.createElement("p");
-    description.textContent = data.description;
-    upgradeDiv.appendChild(description);
-    //add count
-    let upgCount = document.createElement("p");
-    upgCount.textContent = `Count: ${data.count}`;
-    upgCount.classList.add("count");
-    upgradeDiv.appendChild(upgCount);
-    //add cost
-    let upgCost = document.createElement("p");
-    upgCost.textContent = `Cost: ${data.cost}`;
-    upgCost.classList.add("cost");
-    upgradeDiv.appendChild(upgCost);
-    //add buy button
-    let upgBuyBtn = document.createElement("button");
-    upgBuyBtn.textContent = `Buy`;
-    upgBuyBtn.classList.add("buy");
-    upgradeDiv.appendChild(upgBuyBtn);
-    clickUpgradesDiv.appendChild(upgradeDiv);
+    let clickUpgradehtml = `
+      <div class="click-strength-upgrade upgrade" id="${upgrade}">
+        <h3>${data.name}</h3>
+        <p>${data.description}</p>
+        <p class="count">Count: ${data.count}</p>
+        <p class="cost">Cost: ${data.cost}</p>
+        <button class="buy">Buy</button>
+      </div>
+      `;
+    clickUpgradesDiv.insertAdjacentHTML("beforeend", clickUpgradehtml);
   }
   for (const [clicker, data] of Object.entries(autoclickObj.clickers)) {
-    //create div section
-    let upgradeDiv = document.createElement("div");
-    upgradeDiv.classList.add("autoclicker", "upgrade");
-    upgradeDiv.id = clicker;
-    //add title
-    let title = document.createElement("h3");
-    title.textContent = data.name;
-    upgradeDiv.appendChild(title);
-    //add description
-    let description = document.createElement("p");
-    description.textContent = data.description;
-    upgradeDiv.appendChild(description);
-    //add count
-    let upgCount = document.createElement("p");
-    upgCount.textContent = `Count: ${data.count}`;
-    upgCount.classList.add("count");
-    upgradeDiv.appendChild(upgCount);
-    //add cost
-    let upgCost = document.createElement("p");
-    upgCost.textContent = `Cost: ${data.cost}`;
-    upgCost.classList.add("cost");
-    upgradeDiv.appendChild(upgCost);
-    //add buy button
-    let upgBuyBtn = document.createElement("button");
-    upgBuyBtn.textContent = `Buy`;
-    upgBuyBtn.classList.add("buy");
-    upgradeDiv.appendChild(upgBuyBtn);
-    autoPurchasesDiv.appendChild(upgradeDiv);
+    let autoClickerDivHTML = `
+    <div class="autoclicker upgrade" id="${clicker}">
+      <h3>${data.name}</h3>
+      <p>${data.description}</p>
+      <p class="count">Count: ${data.count}</p>
+      <p class="cost">Cost: ${data.cost}</p>
+      <button class="buy">Buy</button>
+    </div>
+    `;
+    autoPurchasesDiv.insertAdjacentHTML("beforeend", autoClickerDivHTML);
+  }
+  for (const [manager, data] of Object.entries(managersObj.managers)) {
+    let managerHTML = `
+    <div class="manager upgrade" id="${manager}">
+      <h3>${data.name}</h3>
+      <p>${data.description}</p>
+      <p class="owned">Owned?: ${data.owned}</p>
+      <p class="cost">Cost: ${data.cost}</p>
+      <button class="buy">Buy</button>
+    </div>`;
+    managersDiv.insertAdjacentHTML("beforeend", managerHTML);
   }
 };
 initializeUpgrades();
@@ -192,6 +188,9 @@ const updatePerSecond = function () {
 };
 
 const buyClickStrengthUpgrade = function (upgrade, element) {
+  if (!element) {
+    element = document.querySelector(`#${upgrade}`);
+  }
   upgrade = clickUpgradesObj.upgrades[upgrade];
   if (onionChopped >= upgrade.cost) {
     decrementOnions(upgrade.cost);
@@ -211,6 +210,15 @@ const buyAutoclicker = function (upgrade, element) {
   }
 };
 
+const buyManager = function (upgrade, element) {
+  upgrade = managersObj.managers[upgrade];
+  if (onionChopped >= upgrade.cost && !upgrade.owned) {
+    decrementOnions(upgrade.cost);
+    upgrade.owned = true;
+    element.querySelector(".owned").textContent = `Owned: ${upgrade.owned}`;
+  }
+};
+
 const buyUpgrade = function (element) {
   let parent = this.parentElement;
   let upgrade = parent.id;
@@ -218,6 +226,8 @@ const buyUpgrade = function (element) {
     buyClickStrengthUpgrade(upgrade, parent);
   } else if (parent.classList.contains("autoclicker")) {
     buyAutoclicker(upgrade, parent);
+  } else if (parent.classList.contains("manager")) {
+    buyManager(upgrade, parent);
   }
 };
 
@@ -229,6 +239,23 @@ const autochopFunc = function () {
 
 const autoshopInterval = setInterval(autochopFunc, 1000);
 
+//managers
+const managerHandler = function () {
+  for (const [manager, data] of Object.entries(managersObj.managers)) {
+    if (data.owned) {
+      for (const upgrade of data.upgrades) {
+        if (data.upgradeType === "clickUpgrades") {
+          while (clickUpgradesObj.upgrades[upgrade].cost < onionChopped) {
+            buyClickStrengthUpgrade(upgrade);
+          }
+        }
+      }
+    }
+  }
+};
+
+const managerInterval = setInterval(managerHandler, 1000);
+
 //event listeners
 btnServe.addEventListener("click", chopOnion);
 btnClickUp.addEventListener("click", function () {
@@ -239,6 +266,9 @@ btnAutoPurch.addEventListener("click", function () {
 });
 btnAutoUp.addEventListener("click", function () {
   showUpgradePane(autoUpgradesDiv);
+});
+btnManagers.addEventListener("click", function () {
+  showUpgradePane(managersDiv);
 });
 Array.from(btnsBuy).forEach(function (element) {
   element.addEventListener("click", buyUpgrade);
