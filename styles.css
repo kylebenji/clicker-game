@@ -1,10 +1,25 @@
 * {
   font-family: sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --background-color: #f4f1de;
+  --text-color1: #3d405b;
+  --accent-color1: #e07a5f;
+  --accent-color2: #81b29a;
+}
+
+html {
+  background-color: var(--background-color);
+  color: var(--text-color1);
 }
 
 #title {
   text-align: center;
   font-size: 4rem;
+  margin-top: 10px;
 }
 
 h2 {
@@ -13,6 +28,8 @@ h2 {
 
 button {
   font-size: 1.3rem;
+  color: var(--text-color1);
+  padding: 3px;
 }
 
 .game {
@@ -22,29 +39,49 @@ button {
 
 .left {
   width: 45%;
+  text-align: center;
+}
+
+.left h2 {
+  margin: 30px auto 10px;
 }
 
 .upgrades-pane {
-  background-color: aqua;
+  background-color: var(--accent-color1);
   width: 45%;
   height: 65%;
   position: absolute;
-  border-radius: 2%;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  margin-top: 5px;
 }
 
 .upgrade {
   display: flex;
   justify-content: space-between;
-  border: 2px solid blue;
+  border: 2px solid var(--text-color1);
+  border-radius: 5px;
+  padding: 3px;
   align-content: center;
+  margin-bottom: 2px;
 }
 
 .upgrade p {
   font-size: 1.1rem;
+  margin: auto 2px;
+  text-align: center;
 }
 
 .upgrade h3 {
   font-size: 1.3rem;
+  margin: auto;
+}
+
+.upgrade button {
+  margin: auto;
+  padding: 10px 5px;
 }
 
 .right {
@@ -52,8 +89,21 @@ button {
   text-align: center;
 }
 
+#stats {
+  padding: 30px;
+}
+
+#stats p {
+  margin-bottom: 5px;
+}
+
+#served {
+  margin-top: 30px;
+}
+
 #serve {
   font-size: 3rem;
+  margin-top: 20px;
 }
 
 .hidden {
@@ -63,4 +113,5 @@ button {
 .selected {
   color: blue;
   background-color: cornflowerblue;
+  border-radius: 7%;
 }
