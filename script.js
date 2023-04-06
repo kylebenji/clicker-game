@@ -4,7 +4,7 @@ const btnClickUp = document.querySelector("#click-upgrades");
 const btnAutoPurch = document.querySelector("#autoclick-purchases");
 const btnAutoUp = document.querySelector("#autoclick-upgrades");
 const btnManagers = document.querySelector("#managers-btn");
-const upgButtons = [btnClickUp, btnAutoPurch, btnAutoUp];
+const upgButtons = [btnClickUp, btnAutoPurch, btnAutoUp, btnManagers];
 const btnsBuy = document.getElementsByClassName("buy");
 
 //DOM elements
@@ -23,7 +23,7 @@ const onionPerClick = document.querySelector("#onion-per-click");
 const onionPerSecond = document.querySelector("#onion-per-second");
 
 //variables
-let onionChopped = 15000;
+let onionChopped = 0;
 
 //upgrades objects
 const clickUpgradesObj = {
