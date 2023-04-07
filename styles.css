@@ -70,17 +70,18 @@ button {
 
 .upgrade p {
   font-size: 1.1rem;
-  margin: auto 2px;
+  margin: auto;
   text-align: center;
 }
 
 .upgrade h3 {
   font-size: 1.3rem;
-  margin: auto;
+  margin: auto auto auto 0;
+  text-align: left;
 }
 
 .upgrade button {
-  margin: auto;
+  margin: auto 0 auto auto;
   padding: 10px 5px;
 }
 
