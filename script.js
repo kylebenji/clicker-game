@@ -16,7 +16,7 @@ const upgradesContainer = document.querySelector(".upgrades");
 const tabNav = document.querySelector("#upgrade-select");
 
 //variables
-let onionChopped = 10000000;
+let onionChopped = 0;
 
 //upgrades objects
 const clickUpgradesObj = {
