@@ -241,63 +241,67 @@ const managersObj = {
   },
 };
 
+const displayNum = function (num) {
+  if (num > 1000) return `${num / 1000}k`;
+  return num;
+};
+
 //setup
 const initializeUpgrades = function () {
   for (const [upgrade, data] of Object.entries(clickUpgradesObj.upgrades)) {
     let clickUpgradehtml = `
-      <div class="click-strength-upgrade upgrade" id="${upgrade}">
-        <h3 class="upg-name">${data.name}</h3>
-        <p>${data.description}</p>
-        <div class="upgrade-data">
-        <p class="count">Count: ${data.count}</p>
-        <p class="cost">Cost: ${data.cost}</p>
-        <button class="buy">Buy</button>
-        </div>
-      </div>
+      <tr class="click-strength-upgrade upgrade" id="${upgrade}">
+        <th scope="row" class="upg-name">${data.name}</th>
+        <td>${data.description}</td>
+        <td class="count">${data.count}</td>
+        <td class="cost">${displayNum(data.cost)}</td>
+        <td><button class="buy">Buy</button></td>
+      </tr>
       `;
     clickUpgradesDiv.insertAdjacentHTML("beforeend", clickUpgradehtml);
   }
   for (const [clicker, data] of Object.entries(autoclickObj.clickers)) {
     let autoClickerDivHTML = `
-    <div class="autoclicker upgrade" id="${clicker}">
-      <h3 class="upg-name">${data.name}</h3>
-      <p>${data.description}</p>
-      <div class="upgrade-data">
-      <p class="count">Count: ${data.count}</p>
-      <p class="cost">Cost: ${data.cost}</p>
-      <button class="buy">Buy</button>
-      </div>
-    </div>
+    <tr class="autoclicker upgrade" id="${clicker}">
+      <th scope="row" class="upg-name">${data.name}</th>
+      <td>${data.description}</td>
+      <td class="count">${data.count}</td>
+      <td class="cost">${displayNum(data.cost)}</td>
+      <td><button class="buy">Buy</button></td>
+    </tr>
     `;
     autoPurchasesDiv.insertAdjacentHTML("beforeend", autoClickerDivHTML);
   }
   for (const [upgrade, data] of Object.entries(autoclickUpObj.autoclickUps)) {
     let autoClickUpDivHTML = `
-    <div class="autoclickUp upgrade" id="${upgrade}">
-      <h3 class="upg-name">${data.name}</h3>
-      <p>${data.description}</p>
-      <div class="upgrade-data">
-      <p class="count">Count: ${data.count}</p>
-      <p class="cost">Cost: ${data.cost}</p>
-      <button class="buy">Buy</button>
-      </div>
-    </div>
+    <tr class="autoclickUp upgrade" id="${upgrade}">
+      <th scope="row" class="upg-name">${data.name}</th>
+      <td>${data.description}</td>
+      <td class="count">${data.count}</td>
+      <td class="cost">${displayNum(data.cost)}</td>
+      <td><button class="buy">Buy</button></td>
+    </tr>
     `;
     autoUpgradesDiv.insertAdjacentHTML("beforeend", autoClickUpDivHTML);
   }
   for (const [manager, data] of Object.entries(managersObj.managers)) {
     let managerHTML = `
-    <div class="manager upgrade" id="${manager}">
-      <h3 class="upg-name">${data.name}</h3>
-      <p>${data.description}</p>
-      <div class="upgrade-data">
-      <p class="owned">Owned?: ${data.owned}</p>
-      <p class="cost">Cost: ${data.cost}</p>
-      <button class="btnOnOff">Off</button>
-      <button class="buy">Buy</button>
-      </div>
-    </div>`;
-    managersDiv.insertAdjacentHTML("beforeend", managerHTML);
+    <tr class="manager upgrade" id="${manager}">
+      <th class="upg-name">${data.name}</th>
+      <td>${data.description}</td>
+      <td class="owned">${data.owned ? "Yes" : "No"}</td>
+      <td class="cost">${displayNum(data.cost)}</td>
+      <td><button class="buy">Buy</button></td>
+      <td>
+        <label class="switch">
+          <input type="checkbox" class="toggleOnOff" disabled="disabled">
+          <span class="slider"></span>
+        </label>
+      </td>
+    </tr>`;
+    managersDiv
+      .querySelector("tbody")
+      .insertAdjacentHTML("beforeend", managerHTML);
   }
 };
 initializeUpgrades();
@@ -329,9 +333,9 @@ const showUpgradePane = function (btn) {
 
 const updateCostCount = function (upgrade, element) {
   upgrade.count++;
-  element.querySelector(".count").textContent = `Count: ${upgrade.count}`;
+  element.querySelector(".count").textContent = `${upgrade.count}`;
   upgrade.cost = Math.floor(upgrade.cost * 1.2);
-  element.querySelector(".cost").textContent = `Cost: ${upgrade.cost}`;
+  element.querySelector(".cost").textContent = `${upgrade.cost}`;
 };
 
 const updatePerClick = function () {
@@ -395,8 +399,11 @@ const buyManager = function (upgrade, element) {
   if (onionChopped >= upgrade.cost && !upgrade.owned) {
     decrementOnions(upgrade.cost);
     upgrade.owned = upgrade.on = true;
-    element.querySelector(".owned").textContent = `Owned: ${upgrade.owned}`;
-    element.querySelector(".btnOnOff").textContent = `On`;
+    element.querySelector("button").style.display = "none";
+    element.querySelector(".owned").textContent = `Yes`;
+    const toggle = element.querySelector(".toggleOnOff");
+    toggle.disabled = false;
+    toggle.checked = true;
   }
 };
 
@@ -414,11 +421,11 @@ const buyUpgrade = function (element) {
   }
 };
 
-const toggleManager = function (btn) {
-  let manager = managersObj.managers[btn.closest(".upgrade").id];
+const toggleManager = function (toggle) {
+  let manager = managersObj.managers[toggle.closest(".upgrade").id];
   if (!manager.owned) return;
   manager.on = !manager.on;
-  btn.textContent = manager.on ? "On" : "Off";
+  toggle.checked = manager.on ? true : false;
 };
 
 //autochopper
@@ -464,7 +471,7 @@ upgradesContainer.addEventListener("click", function (e) {
   if (!e.target.classList.contains("buy")) return;
   buyUpgrade(e.target);
 });
-managersDiv.addEventListener("click", function (e) {
-  if (!e.target.classList.contains("btnOnOff")) return;
+managersDiv.addEventListener("change", function (e) {
+  if (!e.target.classList.contains("toggleOnOff")) return;
   toggleManager(e.target);
 });

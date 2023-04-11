@@ -33,10 +33,55 @@
             Managers
           </button>
         </nav>
-        <div id="click-strength" class="upgrades-pane upgrades-pane--1"></div>
-        <div id="autoclick" class="hidden upgrades-pane upgrades-pane--2"></div>
-        <div id="auto-up" class="hidden upgrades-pane upgrades-pane--3"></div>
-        <div id="managers" class="hidden upgrades-pane upgrades-pane--4"></div>
+        <table id="click-strength" class="upgrades-pane upgrades-pane--1">
+          <thead>
+            <tr class="manager upgrade" id="${manager}">
+              <th scope="col" class="header_title">Upgrade</th>
+              <th scope="col" class="header_description">Description</th>
+              <th scope="col" class="header_count">Count</th>
+              <th scope="col" class="header_cost">Cost</th>
+              <th scope="col" class="header_buy"></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <table id="autoclick" class="hidden upgrades-pane upgrades-pane--2">
+          <thead>
+            <tr class="manager upgrade" id="${manager}">
+              <th scope="col" class="header_title">Upgrade</th>
+              <th scope="col" class="header_description">Description</th>
+              <th scope="col" class="header_count">Count</th>
+              <th scope="col" class="header_cost">Cost</th>
+              <th scope="col" class="header_buy"></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <table id="auto-up" class="hidden upgrades-pane upgrades-pane--3">
+          <thead>
+            <tr class="manager upgrade" id="${manager}">
+              <th scope="col" class="header_title">Upgrade</th>
+              <th scope="col" class="header_description">Description</th>
+              <th scope="col" class="header_count">Count</th>
+              <th scope="col" class="header_cost">Cost</th>
+              <th scope="col" class="header_buy"></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <table id="managers" class="hidden upgrades-pane upgrades-pane--4">
+          <thead>
+            <tr class="manager upgrade" id="${manager}">
+              <th scope="col" class="header_title">Upgrade</th>
+              <th scope="col" class="header_description">Description</th>
+              <th scope="col" class="header_owned">Owned?</th>
+              <th scope="col" class="header_cost">Cost</th>
+              <th scope="col" class="header_buy"></th>
+              <th scope="col" class="header_active">Active?</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
       <div class="right">
         <h2 id="served">Onions Chopped:</h2>
