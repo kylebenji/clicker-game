@@ -12,15 +12,31 @@
       <div class="upgrades left">
         <h2>Upgrades</h2>
         <nav id="upgrade-select">
-          <button id="click-upgrades" class="selected">Clicks</button>
-          <button id="autoclick-purchases">Autoclick</button>
-          <button id="autoclick-upgrades">Autoclick Upgrades</button>
-          <button id="managers-btn">Managers</button>
+          <button
+            id="click-upgrades"
+            class="selected upgrade-tab-btn"
+            data-pane="1"
+          >
+            Clicks
+          </button>
+          <button
+            id="autoclick-purchases"
+            class="upgrade-tab-btn"
+            data-pane="2"
+          >
+            Autoclick
+          </button>
+          <button id="autoclick-upgrades" class="upgrade-tab-btn" data-pane="3">
+            Autoclick Upgrades
+          </button>
+          <button id="managers-btn" class="upgrade-tab-btn" data-pane="4">
+            Managers
+          </button>
         </nav>
-        <div id="click-strength" class="upgrades-pane"></div>
-        <div id="autoclick" class="hidden upgrades-pane"></div>
-        <div id="auto-up" class="hidden upgrades-pane"></div>
-        <div id="managers" class="hidden upgrades-pane"></div>
+        <div id="click-strength" class="upgrades-pane upgrades-pane--1"></div>
+        <div id="autoclick" class="hidden upgrades-pane upgrades-pane--2"></div>
+        <div id="auto-up" class="hidden upgrades-pane upgrades-pane--3"></div>
+        <div id="managers" class="hidden upgrades-pane upgrades-pane--4"></div>
       </div>
       <div class="right">
         <h2 id="served">Onions Chopped:</h2>

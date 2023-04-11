@@ -70,7 +70,6 @@ button {
 
 .upgrade p {
   font-size: 1.1rem;
-  margin: auto;
   text-align: center;
 }
 
@@ -81,8 +80,24 @@ button {
 }
 
 .upgrade button {
-  margin: auto 0 auto auto;
   padding: 10px 5px;
+}
+
+.upgrade-data {
+  display: flex;
+  width: 40%;
+  justify-content: flex-end;
+}
+
+.upgrade-data p {
+  margin: auto 5px;
+}
+.cost,
+.buy,
+.owned,
+.btnOnOff,
+.count {
+  width: min-content;
 }
 
 .right {
