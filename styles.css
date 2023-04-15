@@ -181,5 +181,5 @@ input:checked + .slider:before {
 .selected {
   color: blue;
   background-color: cornflowerblue;
-  border-radius: 7%;
+  border-radius: 3px;
 }

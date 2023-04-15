@@ -16,7 +16,7 @@ const upgradesContainer = document.querySelector(".upgrades");
 const tabNav = document.querySelector("#upgrade-select");
 
 //variables
-let onionChopped = 0;
+let onionChopped = 100000;
 
 //upgrades objects
 const clickUpgradesObj = {
@@ -196,7 +196,7 @@ const managersObj = {
       on: false,
       cost: 25000,
       upgrades: ["busboy"],
-      upgradeType: "autoclick",
+      upgradeType: "autoclicker",
     },
     trainer: {
       name: "Knife Arts Trainer",
@@ -226,7 +226,7 @@ const managersObj = {
       on: false,
       cost: 100000,
       upgrades: ["autochopper"],
-      upgradeType: "autoclick",
+      upgradeType: "autoclicker",
     },
     monkeyWrangler: {
       name: "Monkey Wrangler",
@@ -236,7 +236,7 @@ const managersObj = {
       on: false,
       cost: 250000,
       upgrades: ["angryMonkeys"],
-      upgradeType: "autoclick",
+      upgradeType: "autoclicker",
     },
   },
 };
@@ -362,6 +362,9 @@ const buyClickStrengthUpgrade = function (upgrade, element) {
 };
 
 const buyAutoclicker = function (upgrade, element) {
+  if (!element) {
+    element = document.querySelector(`#${upgrade}`);
+  }
   upgrade = autoclickObj.clickers[upgrade];
   if (onionChopped >= upgrade.cost) {
     decrementOnions(upgrade.cost);
@@ -446,7 +449,7 @@ const managerHandler = function () {
             buyClickStrengthUpgrade(upgrade);
           }
         } else if (data.upgradeType === "autoclicker") {
-          while (autoclickObj.upgrades[upgrade].cost < onionChopped) {
+          while (autoclickObj.clickers[upgrade].cost < onionChopped) {
             buyAutoclicker(upgrade);
           }
         } else if (data.upgradeType === "autoclickUpgrade") {
