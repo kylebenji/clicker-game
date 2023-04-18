@@ -11,16 +11,23 @@ const autoUpgradesDiv = document.querySelector("#auto-up");
 const managersDiv = document.querySelector("#managers");
 const upgradePanes = document.querySelectorAll(".upgrades-pane");
 const onionPerClick = document.querySelector("#onion-per-click");
-const onionPerSecond = document.querySelector("#onion-per-second");
+const onionPerSecond = document.querySelector("#auto-onion-per-second");
+const totalOnionsStat = document.querySelector("#total-onions");
+const totalClicksStat = document.querySelector("#total-clicks");
 const upgradesContainer = document.querySelector(".upgrades");
 const tabNav = document.querySelector("#upgrade-select");
 
 //variables
-let onionChopped = 100000;
+const stats = {
+  onions: 0,
+  totalOnions: 0,
+  onionsPerSec: 0,
+  clickStr: 1,
+  numClicks: 0,
+};
 
 //upgrades objects
 const clickUpgradesObj = {
-  clickStrIncrease: 0,
   upgrades: {
     paringKnife: {
       name: "Paring Knife",
@@ -93,7 +100,6 @@ const clickUpgradesObj = {
 };
 
 const autoclickObj = {
-  onionsPerSec: 0,
   clickers: {
     busboy: {
       name: "Grab Busboy",
@@ -308,18 +314,42 @@ initializeUpgrades();
 
 //functions
 
-const updateOnions = function () {
-  count.textContent = onionChopped;
+const addOnions = function (num) {
+  stats.onions += num;
+  stats.totalOnions += num;
 };
 
-const chopOnion = function () {
-  onionChopped = onionChopped + 1 + clickUpgradesObj.clickStrIncrease;
+const updatePerClick = function () {
+  onionPerClick.textContent = stats.clickStr;
+};
+
+const updatePerSecond = function () {
+  onionPerSecond.textContent = stats.onionsPerSec;
+};
+
+const updateTotalOnions = function () {
+  totalOnionsStat.textContent = stats.totalOnions;
+};
+
+const updateTotClicks = function () {
+  totalClicksStat.textContent = stats.numClicks;
+};
+
+const updateOnions = function () {
+  count.textContent = stats.onions;
+  updateTotalOnions();
+};
+
+const onionClick = function () {
+  addOnions(stats.clickStr);
   updateOnions();
+  stats.numClicks += 1;
+  updateTotClicks();
 };
 
 const decrementOnions = function (cost) {
-  onionChopped -= cost;
-  count.textContent = onionChopped;
+  stats.onions -= cost;
+  count.textContent = stats.onions;
 };
 
 const showUpgradePane = function (btn) {
@@ -338,24 +368,14 @@ const updateCostCount = function (upgrade, element) {
   element.querySelector(".cost").textContent = `${upgrade.cost}`;
 };
 
-const updatePerClick = function () {
-  onionPerClick.textContent = `Onions per click: ${
-    clickUpgradesObj.clickStrIncrease + 1
-  }`;
-};
-
-const updatePerSecond = function () {
-  onionPerSecond.textContent = `Onions per second: ${autoclickObj.onionsPerSec}`;
-};
-
 const buyClickStrengthUpgrade = function (upgrade, element) {
   if (!element) {
     element = document.querySelector(`#${upgrade}`);
   }
   upgrade = clickUpgradesObj.upgrades[upgrade];
-  if (onionChopped >= upgrade.cost) {
+  if (stats.onions >= upgrade.cost) {
     decrementOnions(upgrade.cost);
-    clickUpgradesObj.clickStrIncrease += upgrade.clickIncrease;
+    stats.clickStr += upgrade.clickIncrease;
     updateCostCount(upgrade, element);
     updatePerClick();
   }
@@ -366,9 +386,9 @@ const buyAutoclicker = function (upgrade, element) {
     element = document.querySelector(`#${upgrade}`);
   }
   upgrade = autoclickObj.clickers[upgrade];
-  if (onionChopped >= upgrade.cost) {
+  if (stats.onions >= upgrade.cost) {
     decrementOnions(upgrade.cost);
-    autoclickObj.onionsPerSec += upgrade.perSecIncrease;
+    stats.onionsPerSec += upgrade.perSecIncrease;
     updateCostCount(upgrade, element);
     updatePerSecond();
   }
@@ -380,7 +400,7 @@ const recalculatePerSecond = function () {
     perSec += data.count * data.perSecIncrease;
   }
   console.log(perSec);
-  autoclickObj.onionsPerSec = perSec;
+  stats.onionsPerSec = perSec;
   updatePerSecond();
 };
 
@@ -389,7 +409,7 @@ const buyAutoclickUp = function (upgrade, element) {
     element = document.querySelector(`#${upgrade}`);
   }
   upgrade = autoclickUpObj.autoclickUps[upgrade];
-  if (onionChopped >= upgrade.cost) {
+  if (stats.onions >= upgrade.cost) {
     decrementOnions(upgrade.cost);
     updateCostCount(upgrade, element);
     autoclickObj.clickers[upgrade.upgrades].perSecIncrease += upgrade.increase;
@@ -399,12 +419,13 @@ const buyAutoclickUp = function (upgrade, element) {
 
 const buyManager = function (upgrade, element) {
   upgrade = managersObj.managers[upgrade];
-  if (onionChopped >= upgrade.cost && !upgrade.owned) {
+  if (stats.onions >= upgrade.cost && !upgrade.owned) {
     decrementOnions(upgrade.cost);
     upgrade.owned = upgrade.on = true;
     element.querySelector("button").style.display = "none";
     element.querySelector(".owned").textContent = `Yes`;
     const toggle = element.querySelector(".toggleOnOff");
+    element.querySelector(".slider").classList.add("slider-on");
     toggle.disabled = false;
     toggle.checked = true;
   }
@@ -433,7 +454,7 @@ const toggleManager = function (toggle) {
 
 //autochopper
 const autochopFunc = function () {
-  onionChopped += autoclickObj.onionsPerSec;
+  addOnions(stats.onionsPerSec);
   updateOnions();
 };
 
@@ -445,15 +466,15 @@ const managerHandler = function () {
     if (data.owned && data.on) {
       for (const upgrade of data.upgrades) {
         if (data.upgradeType === "clickUpgrades") {
-          while (clickUpgradesObj.upgrades[upgrade].cost < onionChopped) {
+          while (clickUpgradesObj.upgrades[upgrade].cost < stats.onions) {
             buyClickStrengthUpgrade(upgrade);
           }
         } else if (data.upgradeType === "autoclicker") {
-          while (autoclickObj.clickers[upgrade].cost < onionChopped) {
+          while (autoclickObj.clickers[upgrade].cost < stats.onions) {
             buyAutoclicker(upgrade);
           }
         } else if (data.upgradeType === "autoclickUpgrade") {
-          while (autoclickUpObj.upgrades[upgrade].cost < onionChopped) {
+          while (autoclickUpObj.upgrades[upgrade].cost < stats.onions) {
             buyAutoclickUp(upgrade);
           }
         }
@@ -465,7 +486,7 @@ const managerHandler = function () {
 const managerInterval = setInterval(managerHandler, 1000);
 
 //event listeners
-btnChop.addEventListener("click", chopOnion);
+btnChop.addEventListener("click", onionClick);
 tabNav.addEventListener("click", function (e) {
   if (!e.target.classList.contains("upgrade-tab-btn")) return;
   showUpgradePane(e.target);
