@@ -118,7 +118,6 @@ tbody th {
 
 .slider {
   position: absolute;
-  cursor: pointer;
   top: 0;
   left: 0;
   bottom: 0;
@@ -146,6 +145,10 @@ input:checked + .slider {
   background-color: rgb(14, 146, 255);
 }
 
+.slider-on {
+  cursor: pointer;
+}
+
 input:checked + .slider:before {
   transform: translateX(16px);
   -ms-transform: translateX(16px);
@@ -155,6 +158,9 @@ input:checked + .slider:before {
 .right {
   width: 45%;
   text-align: center;
+  position: sticky;
+  top: 0%;
+  height: fit-content;
 }
 
 #stats {
@@ -181,5 +187,5 @@ input:checked + .slider:before {
 .selected {
   color: blue;
   background-color: cornflowerblue;
-  border-radius: 7%;
+  border-radius: 3px;
 }
