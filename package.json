@@ -1,0 +1,23 @@
+{
+  "name": "clicker-game",
+  "version": "1.0.0",
+  "description": "Prep Cook Clicker Game",
+  "default": "index.html",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html --public-url ./ --no-scope-hoist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kylebenji/clicker-game.git"
+  },
+  "author": "Kyle Duval",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kylebenji/clicker-game/issues"
+  },
+  "homepage": "https://github.com/kylebenji/clicker-game#readme",
+  "dependencies": {
+    "parcel": "^2.8.3"
+  }
+}
