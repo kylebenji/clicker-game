@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>Clicker Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="./src/styles.css" />
   </head>
   <body>
     <h1 id="title">Prep Cook Clicker</h1>
@@ -35,7 +35,7 @@
         </nav>
         <table id="click-strength" class="upgrades-pane upgrades-pane--1">
           <thead>
-            <tr class="manager upgrade" id="${manager}">
+            <tr class="click-strength-upgrade upgrade">
               <th scope="col" class="header_title">Upgrade</th>
               <th scope="col" class="header_description">Description</th>
               <th scope="col" class="header_count">Count</th>
@@ -47,7 +47,7 @@
         </table>
         <table id="autoclick" class="hidden upgrades-pane upgrades-pane--2">
           <thead>
-            <tr class="manager upgrade" id="${manager}">
+            <tr class="autoclicker upgrade">
               <th scope="col" class="header_title">Upgrade</th>
               <th scope="col" class="header_description">Description</th>
               <th scope="col" class="header_count">Count</th>
@@ -59,7 +59,7 @@
         </table>
         <table id="auto-up" class="hidden upgrades-pane upgrades-pane--3">
           <thead>
-            <tr class="manager upgrade" id="${manager}">
+            <tr class="autoclickUp upgrade">
               <th scope="col" class="header_title">Upgrade</th>
               <th scope="col" class="header_description">Description</th>
               <th scope="col" class="header_count">Count</th>
@@ -71,7 +71,7 @@
         </table>
         <table id="managers" class="hidden upgrades-pane upgrades-pane--4">
           <thead>
-            <tr class="manager upgrade" id="${manager}">
+            <tr class="manager upgrade">
               <th scope="col" class="header_title">Upgrade</th>
               <th scope="col" class="header_description">Description</th>
               <th scope="col" class="header_owned">Owned?</th>
@@ -84,9 +84,9 @@
         </table>
       </div>
       <div class="right">
-        <h2 id="served">Onions Chopped:</h2>
+        <h2 id="onions-chopped">Onions Chopped:</h2>
         <h2 id="count">0</h2>
-        <button id="serve">Chop Onion</button>
+        <button id="onions">Chop Onion</button>
         <div id="stats">
           <p>Onions per click: <span id="onion-per-click">1</span></p>
           <p>
@@ -98,6 +98,6 @@
         </div>
       </div>
     </div>
-    <script type="module" src="script.js"></script>
+    <script type="module" src="./src/controller.js"></script>
   </body>
 </html>

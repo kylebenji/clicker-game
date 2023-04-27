@@ -1,5 +1,5 @@
 {
-  "clickUpgradesObj": {
+  "clickUpgObj": {
     "paringKnife": {
       "name": "Paring Knife",
       "description": "Just a lil knife. Increases click strength by 1",
@@ -142,7 +142,7 @@
       "on": false,
       "cost": 10000,
       "upgrades": ["paringKnife", "chefsKnife"],
-      "upgradeType": "clickUpgrades"
+      "upgradeType": "clickUpgObj"
     },
     "FOHTrainer": {
       "name": "Front of House Trainer",
@@ -151,7 +151,7 @@
       "on": false,
       "cost": 25000,
       "upgrades": ["busboy"],
-      "upgradeType": "autoclicker"
+      "upgradeType": "autoclickObj"
     },
     "trainer": {
       "name": "Knife Arts Trainer",
@@ -160,7 +160,7 @@
       "on": false,
       "cost": 65000,
       "upgrades": ["ambidextrous", "knifeTraining"],
-      "upgradeType": "clickUpgrades"
+      "upgradeType": "clickUpgObj"
     },
     "martialtrainer": {
       "name": "Martial Arts Trainer",
@@ -169,7 +169,7 @@
       "on": false,
       "cost": 86000,
       "upgrades": ["armGlaives", "headbutting", "ninjaTraining"],
-      "upgradeType": "clickUpgrades"
+      "upgradeType": "clickUpgObj"
     },
     "mechanic": {
       "name": "Mechanic",
@@ -178,7 +178,7 @@
       "on": false,
       "cost": 100000,
       "upgrades": ["autochopper"],
-      "upgradeType": "autoclicker"
+      "upgradeType": "autoclickObj"
     },
     "monkeyWrangler": {
       "name": "Monkey Wrangler",
@@ -187,7 +187,7 @@
       "on": false,
       "cost": 250000,
       "upgrades": ["angryMonkeys"],
-      "upgradeType": "autoclicker"
+      "upgradeType": "autoclickObj"
     }
   }
 }

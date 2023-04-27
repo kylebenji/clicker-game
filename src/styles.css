@@ -171,11 +171,11 @@ input:checked + .slider:before {
   margin-bottom: 5px;
 }
 
-#served {
+#onions-chopped {
   margin-top: 30px;
 }
 
-#serve {
+#onions {
   font-size: 3rem;
   margin-top: 20px;
 }
