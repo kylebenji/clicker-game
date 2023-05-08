@@ -18,6 +18,10 @@
   },
   "homepage": "https://github.com/kylebenji/clicker-game#readme",
   "dependencies": {
+    "bootstrap": "^5.2.3",
     "parcel": "^2.8.3"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.8.3"
   }
 }

@@ -1,0 +1,59 @@
+$background-color: #f4f1de;
+$text-color1: #3d405b;
+$accent-color1: #e07a5f;
+$accent-color2: #81b29a;
+
+$primary: rgb(14, 146, 255);
+
+$bp-medium: 800px;
+
+* {
+  font-family: sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  background-color: $background-color;
+  color: $text-color1;
+
+  @media (max-width: $bp-medium) {
+    font-size: 95%;
+  }
+}
+
+#title {
+  text-align: center;
+  font-size: 4rem;
+  margin-top: 10px;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+button {
+  font-size: 1.3rem;
+  color: $text-color1;
+  padding: 3px;
+  border-radius: 3px;
+}
+
+.game {
+  display: flex;
+  justify-content: space-evenly;
+
+  @media (max-width: $bp-medium) {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.selected {
+  color: blue;
+  background-color: $primary;
+}
