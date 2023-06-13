@@ -1,5 +1,5 @@
 {
-  "clickUpgObj": {
+  "click-strength": {
     "paringKnife": {
       "name": "Paring Knife",
       "description": "Just a lil knife. Increases click strength by 1",
@@ -64,7 +64,7 @@
       "clickIncrease": 5000
     }
   },
-  "autoclickObj": {
+  "autoclick": {
     "busboy": {
       "name": "Grab Busboy",
       "description": "Grab a busboy from the floor to help you chop. Not very fast, but they've got spirit. +1 chops per second",
@@ -108,7 +108,7 @@
       "perSecIncrease": 2500
     }
   },
-  "autoclickUpObj": {
+  "autoclick-upgrades": {
     "busboyHype": {
       "name": "Hype up your Busboys",
       "description": "Encourage the busboys to chop faster!! Increases busboy chop speed by 1 onion per second",
@@ -134,7 +134,7 @@
       "increase": 5
     }
   },
-  "managersObj": {
+  "managers": {
     "knifeSharpener": {
       "name": "Knife Sharpener",
       "description": "Sharpen your knives regularly! Automatically purchases the Paring knife and Chef's Knife upgrades",
@@ -162,7 +162,7 @@
       "upgrades": ["ambidextrous", "knifeTraining"],
       "upgradeType": "clickUpgObj"
     },
-    "martialtrainer": {
+    "martialTrainer": {
       "name": "Martial Arts Trainer",
       "description": "Helps with your martial skills! Automatically purchases the Arm Glaives, Headbutting, and Ninja training upgrades",
       "owned": false,

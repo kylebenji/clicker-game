@@ -1,21 +1,40 @@
+import { useDispatch, useSelector } from "react-redux";
+import { addClick, addOnions, selectStats } from "../store/statsSlice";
+
 export default function Data() {
+  const dispatch = useDispatch();
+  const stats = useSelector(selectStats);
+
+  function click() {
+    dispatch(addClick());
+    dispatch(
+      addOnions({
+        onions: stats.clickStr,
+      })
+    );
+  }
+
   return (
-    <div class="right col-sm-5">
+    <div className="right col-sm-5">
       <h2 id="onions-chopped">Onions Chopped:</h2>
-      <h2 id="count">0</h2>
-      <button id="onions">Chop Onion</button>
+      <h2 id="count">{stats.onions}</h2>
+      <button id="onions" onClick={click}>
+        Chop Onion
+      </button>
       <div id="stats">
         <p>
-          Onions per click: <span id="onion-per-click">1</span>
+          Onions per click: <span id="onion-per-click">{stats.clickStr}</span>
         </p>
         <p>
-          Auto onions per second: <span id="auto-onion-per-second">0</span>
+          Auto onions per second:{" "}
+          <span id="auto-onion-per-second">{stats.onionsPerSec}</span>
         </p>
         <p>
-          Total onions chopped: <span id="total-onions">0</span>
+          Total onions chopped:{" "}
+          <span id="total-onions">{stats.totalOnions}</span>
         </p>
         <p>
-          Total clicks: <span id="total-clicks">0</span>
+          Total clicks: <span id="total-clicks">{stats.numClicks}</span>
         </p>
       </div>
     </div>

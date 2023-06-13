@@ -5,20 +5,20 @@ import statsView from "./views/statsView.js";
 import upgradePaneView from "./views/upgradePaneView.js";
 
 //functions
-const onionClick = function () {
-  //increment onions
-  model.addOnions(model.stats.clickStr);
-  statsView.updateOnions(model.stats);
+// const onionClick = function () {
+//   //increment onions
+//   model.addOnions(model.stats.clickStr);
+//   statsView.updateOnions(model.stats);
 
-  //increment click count
-  model.click();
-  statsView.updateTotClicks(model.stats);
-};
+//   //increment click count
+//   model.click();
+//   statsView.updateTotClicks(model.stats);
+// };
 
-const decrementOnions = function (cost) {
-  model.stats.onions -= cost;
-  statsView.updateOnions(model.stats);
-};
+// const decrementOnions = function (cost) {
+//   model.stats.onions -= cost;
+//   statsView.updateOnions(model.stats);
+// };
 
 const buyClickStrengthUpgrade = function (upgrade, element) {
   if (!element) {
@@ -143,17 +143,17 @@ const controlOfflineOnions = function (offlineOnions) {
 //init
 const init = function () {
   //load saved data
-  model.loadLocalStorage();
+  // model.loadLocalStorage();
 
   //calculate offline onions
   const offlineOnions = model.calculateOfflineOnions();
   if (offlineOnions) controlOfflineOnions(offlineOnions);
 
   //starting upgrades
-  upgradePaneView.generateAllTabsMarkup(model.state);
+  // upgradePaneView.generateAllTabsMarkup(model.state);
 
   //update displays
-  statsView.updateAll(model.stats);
+  // statsView.updateAll(model.stats);
 
   //autosave
   const saveInterval = setInterval(model.saveLocalStorage, 5000);
@@ -163,7 +163,7 @@ const init = function () {
   const autochopInterval = setInterval(autochopFunc, 1000);
 
   //event listeners
-  statsView.addHandlerChop(onionClick);
+  // statsView.addHandlerChop(onionClick);
   upgradePaneView.addHandlerBuy(buyUpgrade);
   upgradePaneView.addHandlerToggleManager(toggleManager);
 };

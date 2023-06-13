@@ -1,4 +1,4 @@
-@import "bootstrap/scss/bootstrap";
-@import "base";
-@import "stats";
-@import "upgrades";
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "./sass/base";
+@import "./sass/stats";
+@import "./sass/upgrades";
