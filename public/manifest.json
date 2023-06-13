@@ -1,0 +1,8 @@
+{
+  "short_name": "Prep Cook Clicker",
+  "name": "Prep Cook Clicker",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
