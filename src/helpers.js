@@ -9,7 +9,9 @@ import { buyUpgrade } from "./store/upgradesSlice";
 
 export const displayNum = function (num) {
   if (num === "none") return "-";
-  if (num > 1000) return `${num / 1000}k`;
+  if (num > 1000000) return `${(num / 1000000).toFixed(2)}m`;
+  if (num > 10000) return `${(num / 1000).toFixed(0)}k`;
+  if (num > 1000) return `${(num / 1000).toFixed(2)}k`;
   return num;
 };
 
