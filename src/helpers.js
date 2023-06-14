@@ -40,7 +40,6 @@ export function handleBuyUpgrade(upgradeType, upgradeName) {
       let newPerSec = 0;
       for (const data of Object.values(upgrades.autoclick)) {
         newPerSec += data.count * data.perSecIncrease;
-        console.log(newPerSec);
       }
       store.dispatch(setPerSec({ newPerSec }));
       break;
