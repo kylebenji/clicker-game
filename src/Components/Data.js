@@ -35,6 +35,18 @@ export default function Data() {
           </span>
         </p>
         <p>
+          Total onions per second:{" "}
+          <span id="total-onions-per-second">
+            {format.format(stats.totalOnionsPerSec)}
+          </span>
+        </p>
+        <p>
+          Max onions per second:{" "}
+          <span id="max-onions-per-second">
+            {format.format(stats.maxOnionsPerSec)}
+          </span>
+        </p>
+        <p>
           Total onions chopped:{" "}
           <span id="total-onions">{format.format(stats.totalOnions)}</span>
         </p>

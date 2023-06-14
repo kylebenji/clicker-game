@@ -9,6 +9,9 @@ const statsSlice = createSlice({
     clickStr: 1,
     numClicks: 0,
     lastSaveTime: new Date().getTime(),
+    lastTotalOnions: 0,
+    totalOnionsPerSec: 0,
+    maxOnionsPerSec: 0,
   },
   reducers: {
     addOnions: (state, action) => {
@@ -41,6 +44,14 @@ const statsSlice = createSlice({
       //save to per sec
       state.onionsPerSec = action.payload.newPerSec;
     },
+    setTotalOnionsPerSec: (state, action) => {
+      const newTotalOPS = state.totalOnions - state.lastTotalOnions;
+      state.totalOnionsPerSec = newTotalOPS;
+      if (newTotalOPS > state.maxOnionsPerSec || isNaN(state.maxOnionsPerSec)) {
+        state.maxOnionsPerSec = newTotalOPS;
+      }
+      state.lastTotalOnions = state.totalOnions;
+    },
   },
 });
 
@@ -51,6 +62,7 @@ export const {
   addClickStr,
   addClick,
   setPerSec,
+  setTotalOnionsPerSec,
 } = statsSlice.actions;
 
 export default statsSlice.reducer;

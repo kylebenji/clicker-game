@@ -4,7 +4,7 @@ import "./index.scss";
 import ClickerGame from "./Components/ClickerGame";
 import { Provider } from "react-redux";
 import store from "./store/store";
-import { addOnions } from "./store/statsSlice";
+import { addOnions, setTotalOnionsPerSec } from "./store/statsSlice";
 import { canAfford, handleBuyUpgrade } from "./helpers";
 
 //offline onions
@@ -27,13 +27,16 @@ function handleOfflineOnions() {
 
 //interval
 function intervalHandler() {
-  //autochop
   const state = store.getState();
+  //onions per second stat
+  store.dispatch(setTotalOnionsPerSec());
+  //autochop
   if (state.stats.onionsPerSec > 0) {
     store.dispatch(addOnions({ onions: state.stats.onionsPerSec }));
   }
-  //managers BUG something about this is cauusing a freeze, need to hunt it down.
-  //the bug had something to do with the while loop on the cost, changing it to an if statement seems to have fixed it. The if statement should be fine for now since it will give the managers an opportunity to buy at least one of each thing they can afford rather than throwing all the money into the first one
+
+  //managers
+  //there was a bug to do with the while loop on the cost, changing it to an if statement seems to have fixed it. The if statement should be fine for now since it will give the managers an opportunity to buy at least one of each thing they can afford rather than throwing all the money into the first one
   for (const data of Object.values(state.upgrades.managers)) {
     if (!data.owned || !data.on) continue;
     for (const upgrade of data.upgrades) {
