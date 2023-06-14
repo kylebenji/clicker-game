@@ -65,27 +65,27 @@ function UpgradeBody({ view }) {
       >
         <thead>
           <tr className="manager upgrade">
-            <th scope="col" className="header_title">
+            <th scope="col" className="upg-name">
               Upgrade
             </th>
-            <th scope="col" className="header_description">
+            <th scope="col" className="upg-description">
               Description
             </th>
             {upgradeType[0] === "managers" ? (
-              <th scope="col" className="header_owned">
+              <th scope="col" className="upg-owned">
                 Owned?
               </th>
             ) : (
-              <th scope="col" className="header_count">
+              <th scope="col" className="upg-count">
                 Count
               </th>
             )}
-            <th scope="col" className="header_cost">
+            <th scope="col" className="upg-cost">
               Cost
             </th>
-            <th scope="col" className="header_buy"></th>
+            <th scope="col" className="upg-buy"></th>
             {upgradeType[0] === "managers" ? (
-              <th scope="col" className="header_active">
+              <th scope="col" className="upg-active">
                 Active?
               </th>
             ) : (
@@ -106,37 +106,41 @@ function UpgradeBody({ view }) {
                   {upgrade[1].name}
                 </th>
                 {upgradeType[0] === "click-strength" ? (
-                  <td>
+                  <td className="upg-description">
                     {upgrade[1].description.replace(
                       "%VALUE%",
                       upgrade[1].clickIncrease
                     )}
                   </td>
                 ) : upgradeType[0] === "autoclick" ? (
-                  <td>
+                  <td className="upg-description">
                     {upgrade[1].description.replace(
                       "%VALUE%",
                       upgrade[1].perSecIncrease
                     )}
                   </td>
                 ) : upgradeType[0] === "autoclick-upgrades" ? (
-                  <td>
+                  <td className="upg-description">
                     {upgrade[1].description.replace(
                       "%VALUE%",
                       upgrade[1].increase
                     )}
                   </td>
                 ) : (
-                  <td>{upgrade[1].description}</td>
+                  <td className="upg-description">{upgrade[1].description}</td>
                 )}
 
                 {upgradeType[0] === "managers" ? (
-                  <td className="owned">{upgrade[1].owned ? "Yes" : "No"}</td>
+                  <td className="upg-owned">
+                    {upgrade[1].owned ? "Yes" : "No"}
+                  </td>
                 ) : (
-                  <td className="count">{upgrade[1].count}</td>
+                  <td className="upg-count">{upgrade[1].count}</td>
                 )}
-                <td className="cost">{helpers.displayNum(upgrade[1].cost)}</td>
-                <td>
+                <td className="upg-cost">
+                  {helpers.displayNum(upgrade[1].cost)}
+                </td>
+                <td className="upg-buy">
                   <button
                     className="buy"
                     onClick={handleBuyUpgradeClick}
@@ -150,7 +154,7 @@ function UpgradeBody({ view }) {
                   </button>
                 </td>
                 {upgradeType[0] === "managers" ? (
-                  <td>
+                  <td className="upg-active">
                     <label className="switch">
                       <input
                         onChange={handleToggleManager}
