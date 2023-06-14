@@ -1,13 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { changeView, selectUpgradePane } from "../store/viewSlice";
-import { buyUpgrade, selectUpgrades } from "../store/upgradesSlice";
+import { selectUpgrades, toggleManager } from "../store/upgradesSlice";
 import * as helpers from "../helpers";
-import {
-  addClickStr,
-  addOnionsPerSec,
-  decrementOnions,
-  selectOnions,
-} from "../store/statsSlice";
 
 function UpgradeNav({ view }) {
   const dispatch = useDispatch();
@@ -47,38 +41,17 @@ function UpgradeNav({ view }) {
 
 function UpgradeBody({ view }) {
   const upgrades = useSelector(selectUpgrades);
-  const onions = useSelector(selectOnions);
   const dispatch = useDispatch();
-
-  function handleBuyUpgrade(upgradeType, upgradeName) {
-    const upgrade = upgrades[upgradeType][upgradeName];
-
-    if (upgradeType === "manager" && upgrade.owned) return false;
-    if (onions < upgrade.cost) return false;
-
-    dispatch(decrementOnions({ onions: upgrade.cost }));
-    dispatch(buyUpgrade({ upgradeType, upgradeName }));
-
-    switch (upgradeType) {
-      case "click-strength":
-        dispatch(addClickStr({ clickStrIncrease: upgrade.clickIncrease }));
-        break;
-      case "autoclick":
-        dispatch(addOnionsPerSec({ perSecIncrease: upgrade.perSecIncrease }));
-        break;
-      case "autoclick-upgrades":
-        break;
-      case "manager":
-        break;
-      default:
-        break;
-    }
-  }
 
   function handleBuyUpgradeClick(event) {
     const target = event.target;
     const upgradeEl = target.closest(".upgrade");
-    handleBuyUpgrade(upgradeEl.dataset.type, upgradeEl.id);
+    helpers.handleBuyUpgrade(upgradeEl.dataset.type, upgradeEl.id);
+  }
+
+  function handleToggleManager(event) {
+    const upgradeEl = event.target.closest(".upgrade");
+    dispatch(toggleManager({ manager: upgradeEl.id }));
   }
 
   return Object.entries(upgrades).map((upgradeType, i) => {
@@ -140,7 +113,15 @@ function UpgradeBody({ view }) {
                 )}
                 <td className="cost">{helpers.displayNum(upgrade[1].cost)}</td>
                 <td>
-                  <button className="buy" onClick={handleBuyUpgradeClick}>
+                  <button
+                    className="buy"
+                    onClick={handleBuyUpgradeClick}
+                    disabled={
+                      upgradeType[0] === "managers" && upgrade[1].owned
+                        ? true
+                        : false
+                    }
+                  >
                     Buy
                   </button>
                 </td>
@@ -148,9 +129,11 @@ function UpgradeBody({ view }) {
                   <td>
                     <label className="switch">
                       <input
+                        onChange={handleToggleManager}
                         type="checkbox"
                         className="toggleOnOff"
-                        disabled="disabled"
+                        checked={upgrade[1].on}
+                        disabled={!upgrade[1].owned}
                       />
                       <span className="slider"></span>
                     </label>

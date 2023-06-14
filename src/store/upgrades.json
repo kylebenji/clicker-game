@@ -142,7 +142,7 @@
       "on": false,
       "cost": 10000,
       "upgrades": ["paringKnife", "chefsKnife"],
-      "upgradeType": "clickUpgObj"
+      "upgradeType": "click-strength"
     },
     "FOHTrainer": {
       "name": "Front of House Trainer",
@@ -151,7 +151,7 @@
       "on": false,
       "cost": 25000,
       "upgrades": ["busboy"],
-      "upgradeType": "autoclickObj"
+      "upgradeType": "autoclick"
     },
     "trainer": {
       "name": "Knife Arts Trainer",
@@ -160,7 +160,7 @@
       "on": false,
       "cost": 65000,
       "upgrades": ["ambidextrous", "knifeTraining"],
-      "upgradeType": "clickUpgObj"
+      "upgradeType": "click-strength"
     },
     "martialTrainer": {
       "name": "Martial Arts Trainer",
@@ -169,7 +169,7 @@
       "on": false,
       "cost": 86000,
       "upgrades": ["armGlaives", "headbutting", "ninjaTraining"],
-      "upgradeType": "clickUpgObj"
+      "upgradeType": "click-strength"
     },
     "mechanic": {
       "name": "Mechanic",
@@ -178,7 +178,7 @@
       "on": false,
       "cost": 100000,
       "upgrades": ["autochopper"],
-      "upgradeType": "autoclickObj"
+      "upgradeType": "autoclick"
     },
     "monkeyWrangler": {
       "name": "Monkey Wrangler",
@@ -187,7 +187,7 @@
       "on": false,
       "cost": 250000,
       "upgrades": ["angryMonkeys"],
-      "upgradeType": "autoclickObj"
+      "upgradeType": "autoclick"
     }
   }
 }

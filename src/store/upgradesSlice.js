@@ -10,17 +10,24 @@ const upgradesSlice = createSlice({
       const name = action.payload.upgradeName;
       const upgrade = state[type][name];
       //buy upgrade, get data from the action for which upgrade
-      if (type === "manager") {
+      if (type === "managers") {
+        upgrade.owned = true;
+        upgrade.on = true;
+        upgrade.cost = "none";
       } else {
         upgrade.count++;
         //increase upgrade cost
         upgrade.cost = Math.floor(upgrade.cost * 1.2);
       }
     },
+    toggleManager: (state, action) => {
+      const manager = state.managers[action.payload.manager];
+      manager.on = !manager.on;
+    },
   },
 });
 
-export const { buyUpgrade } = upgradesSlice.actions;
+export const { buyUpgrade, toggleManager } = upgradesSlice.actions;
 
 export default upgradesSlice.reducer;
 

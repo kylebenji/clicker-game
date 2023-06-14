@@ -109,10 +109,10 @@ const toggleManager = function (toggle) {
 };
 
 //autochopper
-const autochopFunc = function () {
-  model.addOnions(model.stats.onionsPerSec);
-  statsView.updateOnions(model.stats);
-};
+// const autochopFunc = function () {
+//   model.addOnions(model.stats.onionsPerSec);
+//   statsView.updateOnions(model.stats);
+// };
 
 const managerPurchaseMap = new Map([
   ["clickUpgObj", buyClickStrengthUpgrade],
