@@ -2,63 +2,63 @@
   "click-strength": {
     "paringKnife": {
       "name": "Paring Knife",
-      "description": "Just a lil knife. Increases click strength by 1",
+      "description": "Just a lil knife. Increases click strength by %VALUE%",
       "count": 0,
       "cost": 10,
       "clickIncrease": 1
     },
     "chefsKnife": {
       "name": "Chef's Knife",
-      "description": "Now we're talking! Increase click strength by 5",
+      "description": "Now we're talking! Increase click strength by %VALUE%",
       "count": 0,
       "cost": 100,
       "clickIncrease": 5
     },
     "knifeTraining": {
       "name": "Train knife skills",
-      "description": "Chop faster! Increases click strength by 10",
+      "description": "Chop faster! Increases click strength by %VALUE%",
       "count": 0,
       "cost": 500,
       "clickIncrease": 10
     },
     "ambidextrous": {
       "name": "Ambidexterity",
-      "description": "Work with both hands! Increases click strength by 25",
+      "description": "Work with both hands! Increases click strength by %VALUE%",
       "count": 0,
       "cost": 1000,
       "clickIncrease": 25
     },
     "armGlaives": {
       "name": "Full Arm Glaives",
-      "description": "Full arm knives like Batman, increases click strength by 100",
+      "description": "Full arm knives like Batman, increases click strength by %VALUE%",
       "count": 0,
       "cost": 1500,
       "clickIncrease": 100
     },
     "headbutting": {
       "name": "Headbutting",
-      "description": "You've figured out how to headbutt onions into a perfect dice! Increases click strength by 250",
+      "description": "You've figured out how to headbutt onions into a perfect dice! Increases click strength by %VALUE%",
       "count": 0,
       "cost": 8600,
       "clickIncrease": 250
     },
     "ninjaTraining": {
       "name": "Ninja Training",
-      "description": "Take a break to train with ninjas! Increases click strength by 500",
+      "description": "Take a break to train with ninjas! Increases click strength by %VALUE%",
       "count": 0,
       "cost": 12000,
       "clickIncrease": 500
     },
     "oneWithTheOnion": {
       "name": "One with the Onion",
-      "description": "Become One with the onion, let the knowledge of its layers flow through you. Increases click strength by 1250",
+      "description": "Become One with the onion, let the knowledge of its layers flow through you. Increases click strength by %VALUE%",
       "count": 0,
       "cost": 40000,
       "clickIncrease": 1250
     },
     "ogres": {
       "name": "Ogres",
-      "description": "Ogres are like onions. Increases click strength by 5000",
+      "description": "Ogres are like onions. Increases click strength by %VALUE%",
       "count": 0,
       "cost": 110000,
       "clickIncrease": 5000
@@ -67,42 +67,42 @@
   "autoclick": {
     "busboy": {
       "name": "Grab Busboy",
-      "description": "Grab a busboy from the floor to help you chop. Not very fast, but they've got spirit. +1 chops per second",
+      "description": "Grab a busboy from the floor to help you chop. Not very fast, but they've got spirit. +%VALUE% chops per second",
       "count": 0,
       "cost": 500,
       "perSecIncrease": 1
     },
     "newCook": {
       "name": "Hire another Cook",
-      "description": "Hire another prep cook. +10 chops per second",
+      "description": "Hire another prep cook. +%VALUE% chops per second",
       "count": 0,
       "cost": 5000,
       "perSecIncrease": 10
     },
     "autochopper": {
       "name": "Automated Chopper",
-      "description": "Basic autochopper. Loud, but can chop 25 onions a second",
+      "description": "Basic autochopper. Loud, but can chop %VALUE% onions a second",
       "count": 0,
       "cost": 25000,
       "perSecIncrease": 25
     },
     "angryMonkeys": {
       "name": "Herd of angry monkeys with knives",
-      "description": "Not necessarily up to food code, but they have the fervor. Can chop 100 onions per second",
+      "description": "Not necessarily up to food code, but they have the fervor. Can chop %VALUE% onions per second",
       "count": 0,
       "cost": 100000,
       "perSecIncrease": 100
     },
     "oldPrepCook": {
       "name": "One (1) old prep cook",
-      "description": "They've been doing this longer than you or your parents have been alive, just get out of the way. Can chop 750 onions per second.",
+      "description": "They've been doing this longer than you or your parents have been alive, just get out of the way. Can chop %VALUE% onions per second.",
       "count": 0,
       "cost": 500000,
       "perSecIncrease": 750
     },
     "deluxeChopper": {
       "name": "The Deluxe Autochopping system",
-      "description": "This top of the line system recently released by Onions Inc. can chop 2500 onions per second, but requires the purchase of an entire building to house it",
+      "description": "This top of the line system recently released by Onions Inc. can chop %VALUE% onions per second, but requires the purchase of an entire building to house it",
       "count": 0,
       "cost": 1000000,
       "perSecIncrease": 2500
@@ -111,7 +111,7 @@
   "autoclick-upgrades": {
     "busboyHype": {
       "name": "Hype up your Busboys",
-      "description": "Encourage the busboys to chop faster!! Increases busboy chop speed by 1 onion per second",
+      "description": "Encourage the busboys to chop faster!! Increases busboy chop speed by %VALUE% onion per second",
       "count": 0,
       "cost": 4200,
       "upgrades": "busboy",
@@ -119,7 +119,7 @@
     },
     "cookBonus": {
       "name": "Give Cook a Bonus",
-      "description": "Give your cooks a bonus!! Increases cook chop speed by 3 onions per second",
+      "description": "Give your cooks a bonus!! Increases cook chop speed by %VALUE% onions per second",
       "count": 0,
       "cost": 12500,
       "upgrades": "newCook",
@@ -127,7 +127,7 @@
     },
     "greaseChopper": {
       "name": "Grease your Autochopper",
-      "description": "Maker sure the autochopper is running smoothly!! Increases chop speed by 5 onions per second",
+      "description": "Make sure the autochopper is running smoothly!! Increases chop speed by %VALUE% onions per second",
       "count": 0,
       "cost": 30000,
       "upgrades": "autochopper",

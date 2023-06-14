@@ -105,7 +105,31 @@ function UpgradeBody({ view }) {
                 <th scope="row" className="upg-name">
                   {upgrade[1].name}
                 </th>
-                <td>{upgrade[1].description}</td>
+                {upgradeType[0] === "click-strength" ? (
+                  <td>
+                    {upgrade[1].description.replace(
+                      "%VALUE%",
+                      upgrade[1].clickIncrease
+                    )}
+                  </td>
+                ) : upgradeType[0] === "autoclick" ? (
+                  <td>
+                    {upgrade[1].description.replace(
+                      "%VALUE%",
+                      upgrade[1].perSecIncrease
+                    )}
+                  </td>
+                ) : upgradeType[0] === "autoclick-upgrades" ? (
+                  <td>
+                    {upgrade[1].description.replace(
+                      "%VALUE%",
+                      upgrade[1].increase
+                    )}
+                  </td>
+                ) : (
+                  <td>{upgrade[1].description}</td>
+                )}
+
                 {upgradeType[0] === "managers" ? (
                   <td className="owned">{upgrade[1].owned ? "Yes" : "No"}</td>
                 ) : (
