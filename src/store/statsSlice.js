@@ -12,25 +12,34 @@ const statsSlice = createSlice({
   },
   reducers: {
     addOnions: (state, action) => {
+      //add an amount of onions to the current and total
       state.onions += action.payload.onions;
       state.totalOnions += action.payload.onions;
       state.lastSaveTime = new Date().getTime();
     },
     decrementOnions: (state, action) => {
+      //remove onions from current
       state.onions -= action.payload.onions;
       state.lastSaveTime = new Date().getTime();
     },
     addOnionsPerSec: (state, action) => {
+      //increase the autclick amount
       state.onionsPerSec += action.payload.perSecIncrease;
       state.lastSaveTime = new Date().getTime();
     },
     addClickStr: (state, action) => {
+      // increase the click strength by an amount
       state.clickStr += action.payload.clickStrIncrease;
       state.lastSaveTime = new Date().getTime();
     },
     addClick: (state, action) => {
+      //add a click to the total stat
       state.numClicks++;
       state.lastSaveTime = new Date().getTime();
+    },
+    setPerSec: (state, action) => {
+      //save to per sec
+      state.onionsPerSec = action.payload.newPerSec;
     },
   },
 });
@@ -41,6 +50,7 @@ export const {
   addOnionsPerSec,
   addClickStr,
   addClick,
+  setPerSec,
 } = statsSlice.actions;
 
 export default statsSlice.reducer;

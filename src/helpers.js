@@ -2,6 +2,7 @@ import {
   addClickStr,
   addOnionsPerSec,
   decrementOnions,
+  setPerSec,
 } from "./store/statsSlice";
 import store from "./store/store";
 import { buyUpgrade } from "./store/upgradesSlice";
@@ -13,8 +14,8 @@ export const displayNum = function (num) {
 };
 
 export function handleBuyUpgrade(upgradeType, upgradeName) {
-  const state = store.getState();
-  const upgrades = state.upgrades;
+  let state = store.getState();
+  let upgrades = state.upgrades;
 
   const upgrade = upgrades[upgradeType][upgradeName];
 
@@ -34,8 +35,14 @@ export function handleBuyUpgrade(upgradeType, upgradeName) {
       );
       break;
     case "autoclick-upgrades":
-      break;
-    case "manager":
+      upgrades = store.getState().upgrades; //get new state since we've changed it since we got it the first time.
+      //recalculate the click per second with the updates to autclickers
+      let newPerSec = 0;
+      for (const data of Object.values(upgrades.autoclick)) {
+        newPerSec += data.count * data.perSecIncrease;
+        console.log(newPerSec);
+      }
+      store.dispatch(setPerSec({ newPerSec }));
       break;
     default:
       break;

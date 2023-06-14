@@ -10,14 +10,22 @@ const upgradesSlice = createSlice({
       const name = action.payload.upgradeName;
       const upgrade = state[type][name];
       //buy upgrade, get data from the action for which upgrade
-      if (type === "managers") {
-        upgrade.owned = true;
-        upgrade.on = true;
-        upgrade.cost = "none";
-      } else {
-        upgrade.count++;
-        //increase upgrade cost
-        upgrade.cost = Math.floor(upgrade.cost * 1.2);
+      switch (type) {
+        case "managers":
+          //set owned status and turn on automatically
+          upgrade.owned = true;
+          upgrade.on = true;
+          upgrade.cost = "none";
+          break;
+        case "autoclick-upgrades":
+          //update strength of respective upgrades
+          state.autoclick[upgrade.upgrades].perSecIncrease += upgrade.increase;
+        //falls through
+        default:
+          upgrade.count++;
+          //increase upgrade cost
+          upgrade.cost = Math.floor(upgrade.cost * 1.2);
+          break;
       }
     },
     toggleManager: (state, action) => {
