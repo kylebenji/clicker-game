@@ -33,10 +33,12 @@ function intervalHandler() {
     store.dispatch(addOnions({ onions: state.stats.onionsPerSec }));
   }
   //managers BUG something about this is cauusing a freeze, need to hunt it down.
-  for (const [manager, data] of Object.entries(state.upgrades.managers)) {
+  //the bug had something to do with the while loop on the cost, changing it to an if statement seems to have fixed it. The if statement should be fine for now since it will give the managers an opportunity to buy at least one of each thing they can afford rather than throwing all the money into the first one
+  for (const data of Object.values(state.upgrades.managers)) {
     if (!data.owned || !data.on) continue;
     for (const upgrade of data.upgrades) {
-      while (canAfford(state.upgrades[data.upgradeType][upgrade].cost)) {
+      if (canAfford(state.upgrades[data.upgradeType][upgrade].cost)) {
+        //if statement to avoid freeze
         handleBuyUpgrade(data.upgradeType, upgrade);
       }
     }
@@ -49,7 +51,7 @@ function init() {
   handleOfflineOnions();
 
   //intervals
-  const interval = setInterval(intervalHandler, 1000);
+  setInterval(intervalHandler, 1000);
 }
 init();
 
