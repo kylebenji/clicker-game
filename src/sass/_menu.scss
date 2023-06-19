@@ -1,5 +1,9 @@
 #menu {
   position: absolute;
-  left: 50px;
+  left: 40px;
   top: 35px;
+
+  @media (max-width: $bp-medium) {
+    top: 90px;
+  }
 }
