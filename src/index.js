@@ -21,19 +21,21 @@ function handleOfflineOnions() {
   //if there are onions then alert about them and add them to the store
   if (offlineOnions) {
     alert(`You chopped ${offlineOnions} onions while offline!`);
-    store.dispatch(addOnions({ onions: offlineOnions }));
+    store.dispatch(addOnions({ onions: offlineOnions, offline: true }));
   }
 }
 
 //interval
 function intervalHandler() {
   const state = store.getState();
-  //onions per second stat
-  store.dispatch(setTotalOnionsPerSec());
+
   //autochop
   if (state.stats.onionsPerSec > 0) {
     store.dispatch(addOnions({ onions: state.stats.onionsPerSec }));
   }
+
+  //onions per second stat
+  store.dispatch(setTotalOnionsPerSec());
 
   //managers
   //there was a bug to do with the while loop on the cost, changing it to an if statement seems to have fixed it. The if statement should be fine for now since it will give the managers an opportunity to buy at least one of each thing they can afford rather than throwing all the money into the first one

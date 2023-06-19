@@ -19,6 +19,9 @@ const statsSlice = createSlice({
       state.onions += action.payload.onions;
       state.totalOnions += action.payload.onions;
       state.lastSaveTime = new Date().getTime();
+      if (action.payload.offline) {
+        state.lastTotalOnions = state.totalOnions;
+      }
     },
     decrementOnions: (state, action) => {
       //remove onions from current
