@@ -29,14 +29,14 @@ export default function Menu() {
       </button>
       <div className="dropdown-menu">
         <button onClick={allManagersOn} className="dropdown-item" type="button">
-          All Managers On (WIP)
+          All Managers On
         </button>
         <button
           onClick={allManagersOff}
           className="dropdown-item"
           type="button"
         >
-          All Managers Off (WIP)
+          All Managers Off
         </button>
         <button className="dropdown-item" type="button">
           Settings (WIP)
