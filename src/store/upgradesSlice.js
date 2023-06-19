@@ -32,10 +32,16 @@ const upgradesSlice = createSlice({
       const manager = state.managers[action.payload.manager];
       manager.on = !manager.on;
     },
+    toggleAllManagers: (state, action) => {
+      for (const manager of Object.keys(state.managers)) {
+        state.managers[manager].on = action.payload.managersOn;
+      }
+    },
   },
 });
 
-export const { buyUpgrade, toggleManager } = upgradesSlice.actions;
+export const { buyUpgrade, toggleManager, toggleAllManagers } =
+  upgradesSlice.actions;
 
 export default upgradesSlice.reducer;
 

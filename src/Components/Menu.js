@@ -5,7 +5,19 @@ achievements
 etc.
 */
 
+import { useDispatch } from "react-redux";
+import { toggleAllManagers } from "../store/upgradesSlice";
+
 export default function Menu() {
+  const dispatch = useDispatch();
+
+  function allManagersOn() {
+    dispatch(toggleAllManagers({ managersOn: true }));
+  }
+  function allManagersOff() {
+    dispatch(toggleAllManagers({ managersOn: false }));
+  }
+
   return (
     <div id="menu" className="dropdown">
       <button
@@ -16,10 +28,14 @@ export default function Menu() {
         Menu
       </button>
       <div className="dropdown-menu">
-        <button className="dropdown-item" type="button">
+        <button onClick={allManagersOn} className="dropdown-item" type="button">
           All Managers On (WIP)
         </button>
-        <button className="dropdown-item" type="button">
+        <button
+          onClick={allManagersOff}
+          className="dropdown-item"
+          type="button"
+        >
           All Managers Off (WIP)
         </button>
         <button className="dropdown-item" type="button">
