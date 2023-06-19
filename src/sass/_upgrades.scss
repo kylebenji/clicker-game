@@ -110,6 +110,10 @@
           transition: 0.4s;
           border-radius: 50%;
         }
+
+        &:hover {
+          cursor: pointer;
+        }
       }
 
       input:checked + .slider {
