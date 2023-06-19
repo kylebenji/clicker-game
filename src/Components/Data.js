@@ -20,7 +20,7 @@ export default function Data() {
     <div className="right col-sm-5">
       <h2 id="onions-chopped">Onions Chopped:</h2>
       <h2 id="count">{format.format(stats.onions)}</h2>
-      <button id="onions" onClick={click}>
+      <button id="onions" className="btn btn-secondary" onClick={click}>
         Chop Onion
       </button>
       <div id="stats">

@@ -19,22 +19,26 @@ function UpgradeNav({ view }) {
 
   return (
     <nav id="upgrade-select">
-      {buttons.map((btn, i) => {
-        return (
-          <button
-            id={btn[0] + "-btn"}
-            className={
-              view === btn[0] ? "upgrade-tab-btn selected" : "upgrade-tab-btn"
-            }
-            data-pane={i}
-            data-type={btn[0]}
-            key={btn[0] + "-btn"}
-            onClick={handleBtnClick}
-          >
-            {btn[1]}
-          </button>
-        );
-      })}
+      <div className="btn-group" role="group">
+        {buttons.map((btn, i) => {
+          return (
+            <button
+              id={btn[0] + "-btn"}
+              className={
+                view === btn[0]
+                  ? "upgrade-tab-btn active btn btn-secondary"
+                  : "upgrade-tab-btn btn btn-secondary"
+              }
+              data-pane={i}
+              data-type={btn[0]}
+              key={btn[0] + "-btn"}
+              onClick={handleBtnClick}
+            >
+              {btn[1]}
+            </button>
+          );
+        })}
+      </div>
     </nav>
   );
 }
@@ -142,7 +146,7 @@ function UpgradeBody({ view }) {
                 </td>
                 <td className="upg-buy">
                   <button
-                    className="buy"
+                    className="buy btn btn-secondary"
                     onClick={handleBuyUpgradeClick}
                     disabled={
                       upgradeType[0] === "managers" && upgrade[1].owned

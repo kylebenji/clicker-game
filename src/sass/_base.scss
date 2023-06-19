@@ -28,7 +28,6 @@ h2 {
 
 button {
   font-size: 1.3rem;
-  color: $text-color1;
   padding: 3px;
   border-radius: 3px;
 }
@@ -45,9 +44,4 @@ button {
 
 .hidden {
   display: none;
-}
-
-.selected {
-  color: blue;
-  background-color: $primary;
 }
