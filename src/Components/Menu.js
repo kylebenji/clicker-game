@@ -1,6 +1,5 @@
 /* to include:
 Dark Mode
-toggle all managers
 achievements
 etc.
 */

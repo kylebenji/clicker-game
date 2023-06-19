@@ -1,4 +1,15 @@
+$background-color: #f4f1de;
+$text-color1: #3d405b;
+$accent-color1: #e07a5f;
+$accent-color2: #81b29a;
+
+$primary: rgb(14, 146, 255);
+$secondary: $accent-color2;
+
+$bp-medium: 800px;
+
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
+
 @import "./sass/base";
 @import "./sass/stats";
 @import "./sass/upgrades";
