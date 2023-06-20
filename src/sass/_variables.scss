@@ -1,11 +1,21 @@
-$background-color: #f4f1de;
 $text-color1: #3d405b;
 $accent-color1: #e07a5f;
 $accent-color2: #81b29a;
 
+$body-bg: #f4f1de;
+$body-color: $text-color1;
+$btn-color: $text-color1;
+
 $primary: rgb(14, 146, 255);
 $secondary: $accent-color2;
+$body-tertiary-bg: $accent-color1;
+
+$body-tertiary-bg-dark: red;
 
 $bp-medium: 800px;
 $btn-font-weight: 500;
 $btn-font-size: 1.2rem;
+
+.btn-secondary {
+  color: $body-color !important;
+}

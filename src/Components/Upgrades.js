@@ -64,7 +64,7 @@ function UpgradeBody({ view }) {
         id={upgradeType[0]}
         className={`${
           upgradeType[0] === view ? "" : "hidden"
-        } upgrades-pane upgrades-pane--${i}`}
+        } upgrades-pane upgrades-pane--${i} bg-tertiary`}
         key={upgradeType[0]}
       >
         <thead>
