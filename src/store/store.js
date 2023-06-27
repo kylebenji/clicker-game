@@ -21,7 +21,13 @@ store.subscribe(() => {
   saveState({
     upgrades: state.upgrades,
     stats: state.stats,
-    view: state.view,
+    view: {
+      //defining these so I can keep the theme but clear the rest of the view settings. would probably make more sense to just load anything that I don't define with the presets, but this accomplishes the same thing
+      activeUpgradePane: "click-strength",
+      theme: state.view.theme,
+      showSettings: false,
+      showAchivements: false,
+    },
   });
 });
 

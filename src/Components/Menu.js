@@ -8,8 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleAllManagers } from "../store/upgradesSlice";
 import { Button, Dropdown, Modal } from "react-bootstrap";
 import {
+  selectShowAchievements,
   selectShowSettings,
   selectTheme,
+  setShowAchievements,
   setShowSettings,
   setTheme,
 } from "../store/viewSlice";
@@ -30,6 +32,10 @@ export default function Menu() {
     dispatch(setShowSettings({ showSettings: true }));
   }
 
+  function handleShowAchievements() {
+    dispatch(setShowAchievements({ showAchievements: true }));
+  }
+
   return (
     <Dropdown id="menu">
       <Dropdown.Toggle variant="secondary">Menu</Dropdown.Toggle>
@@ -37,7 +43,9 @@ export default function Menu() {
         <Dropdown.Item onClick={allManagersOn}>All Managers On</Dropdown.Item>
         <Dropdown.Item onClick={allManagersOff}>All Managers Off</Dropdown.Item>
         <Dropdown.Item onClick={handleShowSettings}>Settings</Dropdown.Item>
-        <Dropdown.Item>Achievements</Dropdown.Item>
+        <Dropdown.Item onClick={handleShowAchievements}>
+          Achievements
+        </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );
@@ -79,6 +87,34 @@ export function Settings() {
             checked={useSelector(selectTheme) === "dark"}
           ></Toggle>
         </p>
+      </Modal.Body>
+
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
+
+//achievements modal
+export function Achievements() {
+  const showAchievements = useSelector(selectShowAchievements);
+  const dispatch = useDispatch();
+
+  function handleClose() {
+    dispatch(setShowAchievements({ showAchievements: false }));
+  }
+
+  return (
+    <Modal show={showAchievements} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>Achievements</Modal.Title>
+      </Modal.Header>
+
+      <Modal.Body>
+        <p>Currently under construction, come back later!</p>
       </Modal.Body>
 
       <Modal.Footer>
