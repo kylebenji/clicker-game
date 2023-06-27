@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeView, selectUpgradePane } from "../store/viewSlice";
 import { selectUpgrades, toggleManager } from "../store/upgradesSlice";
 import * as helpers from "../helpers";
+import { Toggle } from "./General";
 
 function UpgradeNav({ view }) {
   const dispatch = useDispatch();
@@ -64,7 +65,7 @@ function UpgradeBody({ view }) {
         id={upgradeType[0]}
         className={`${
           upgradeType[0] === view ? "" : "hidden"
-        } upgrades-pane upgrades-pane--${i} bg-tertiary`}
+        } upgrades-pane upgrades-pane--${i} bg-body-tertiary`}
         key={upgradeType[0]}
       >
         <thead>
@@ -159,16 +160,11 @@ function UpgradeBody({ view }) {
                 </td>
                 {upgradeType[0] === "managers" ? (
                   <td className="upg-active">
-                    <label className="switch">
-                      <input
-                        onChange={handleToggleManager}
-                        type="checkbox"
-                        className="toggleOnOff"
-                        checked={upgrade[1].on}
-                        disabled={!upgrade[1].owned}
-                      />
-                      <span className="slider"></span>
-                    </label>
+                    <Toggle
+                      toggleHandler={handleToggleManager}
+                      checked={upgrade[1].on}
+                      disabled={!upgrade[1].owned}
+                    ></Toggle>
                   </td>
                 ) : (
                   []

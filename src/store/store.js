@@ -21,6 +21,7 @@ store.subscribe(() => {
   saveState({
     upgrades: state.upgrades,
     stats: state.stats,
+    view: state.view,
   });
 });
 

@@ -53,6 +53,9 @@ function intervalHandler() {
 
 //initialize offline onions and intervals
 function init() {
+  //load proper theme
+  document.querySelector("html").dataset.bsTheme = store.getState().view.theme;
+
   //calculate offline onions
   handleOfflineOnions();
 

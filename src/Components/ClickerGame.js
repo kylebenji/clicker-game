@@ -1,5 +1,5 @@
 import Data from "./Data";
-import Menu from "./Menu";
+import Menu, { Settings } from "./Menu";
 import Upgrades from "./Upgrades";
 
 export default function ClickerGame() {
@@ -11,6 +11,7 @@ export default function ClickerGame() {
         <Upgrades />
         <Data />
       </div>
+      <Settings />
     </>
   );
 }
