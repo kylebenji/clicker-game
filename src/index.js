@@ -11,6 +11,7 @@ import { canAfford, handleBuyUpgrade } from "./helpers";
 function handleOfflineOnions() {
   //calculate onions using the store
   const state = store.getState();
+  const format = new Intl.NumberFormat("en-US");
   const lastSave = state.stats.lastSaveTime;
   const currentTime = new Date().getTime();
   const onionsPerSec = state.stats.onionsPerSec;
@@ -20,7 +21,7 @@ function handleOfflineOnions() {
   );
   //if there are onions then alert about them and add them to the store
   if (offlineOnions) {
-    alert(`You chopped ${offlineOnions} onions while offline!`);
+    alert(`You chopped ${format.format(offlineOnions)} onions while offline!`);
     store.dispatch(addOnions({ onions: offlineOnions, offline: true }));
   }
 }
