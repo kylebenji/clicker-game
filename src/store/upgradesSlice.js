@@ -34,6 +34,7 @@ const upgradesSlice = createSlice({
     },
     toggleAllManagers: (state, action) => {
       for (const manager of Object.keys(state.managers)) {
+        if (!state.managers[manager].owned) continue;
         state.managers[manager].on = action.payload.managersOn;
       }
     },
